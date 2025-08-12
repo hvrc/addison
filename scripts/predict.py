@@ -1,6 +1,6 @@
 import sys
 import pickle
-from network import NeuralNetwork
+from network import Addison
 
 def create_input_vector(x1, x2):
     x = [0.0] * 20
@@ -18,9 +18,5 @@ def predict(x1, x2):
     prediction = activations[-1].index(max(activations[-1]))
     return prediction
 
-if __name__ == '__main__':
-    if len(sys.argv) != 3:
-        print("Usage: python predict.py <x1> <x2>")
-        sys.exit(1)
-    x1, x2 = float(sys.argv[1]), float(sys.argv[2])
-    print(predict(x1, x2))
+x1, x2 = float(sys.argv[1]), float(sys.argv[2])
+print(predict(x1, x2))

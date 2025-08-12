@@ -1,19 +1,21 @@
 import sys
-from network import NeuralNetwork
+from network import Addison
 import pickle
 
+# the input is two numbers between 0 and 9
+# so the first layer is 20 neurons,
+# two of them will be hot (1.0), the rest will be cold (0.0)
+# our output layer will have 19 neurons,
+# for all possible sums of single digit number (0 to 18)
+
 def create_network(hidden_layers):
-    input_size = 20   # 10 neurons for each number (0-9)
-    output_size = 19  # Sums 0 to 18
+    input_size = 20
+    output_size = 19
     layer_sizes = [input_size] + hidden_layers + [output_size]
-    nn = NeuralNetwork(layer_sizes)
+    nn = Addison(layer_sizes)
+
     with open('../model/model.pkl', 'wb') as f:
         pickle.dump(nn, f)
-    print(f"Created neural network with layers: {layer_sizes}")
 
-if __name__ == '__main__':
-    if len(sys.argv) < 2:
-        print("Usage: python create.py <num_hidden_layers> <neurons_layer1> <neurons_layer2> ...")
-        sys.exit(1)
-    hidden_layers = [int(x) for x in sys.argv[2:]]
-    create_network(hidden_layers)
+hidden_layers = [int(x) for x in sys.argv[2:]]
+create_network(hidden_layers)

@@ -1,7 +1,7 @@
 import random
 import pickle
 import math
-from network import NeuralNetwork
+from network import Addison
 
 def create_input_vector(x1, x2):
     x = [0.0] * 20
@@ -37,7 +37,6 @@ def train_network(batch_size=100, epochs=500, learning_rate=0.01):
             total_loss += loss / batch_size
             print(f"Epoch {epoch+1}, Iteration {i//batch_size + 1}, Loss: {total_loss / (i//batch_size + 1):.4f}")
         
-        # Save model after each epoch
         with open('../model/model.pkl', 'wb') as f:
             pickle.dump(nn, f)
 
